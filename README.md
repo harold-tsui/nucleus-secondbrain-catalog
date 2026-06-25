@@ -6,16 +6,20 @@
 
 ## 内容
 
-- `SKILL.md` —— 去个人化的 skill 本体（可 `openclaw skills install`）。
+- `SKILL.md` —— 去个人化的 skill 本体（货架**规则**，可 `openclaw skills install`）。
+- `framework/` —— 「空货架」**脚手架**：白名单 `.gitignore` 模板、`STRUCTURE.md` 生成脚本、
+  L2 `_guide.md` 批量补全脚本、子域指南模板。供任何人 fork 自建货架。见 `framework/README.md`。
 
 ## 家族关系
 
-| 仓 | 职责 |
-|---|---|
-| `nucleus-governance` | PDCA 治理框架（tool-neutral） |
-| **`nucleus-secondbrain-catalog`**（本仓） | 知识存储/货架方案 skill |
+| 仓 | 职责 | 可见性 |
+|---|---|---|
+| `nucleus-governance` | PDCA 治理框架（tool-neutral） | — |
+| **`nucleus-secondbrain-catalog`**（本仓） | 货架**规则 skill** + **框架脚手架** | 可公开 |
+| `nucleus-secondbrain-vault` | 某人的**私有实例**（真实内容元数据） | 私有 |
 
-二者同属 `00-system/02-governance/` 治理货架，均为跨域复用的治理能力。
+规则（catalog）/ 模板（framework）/ 实例（vault）构成完整家族；前两者同属
+`00-system/02-governance/` 治理货架，为跨域复用的治理能力。
 
 ## 权威来源
 
