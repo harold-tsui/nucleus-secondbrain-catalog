@@ -170,4 +170,4 @@ D0-notes/         笔记软件现场(现场≠地图):按软件分 obsidian/onen
 
 ---
 
-*v2.0 · 基于 catalog-L2-spec v3.7-baseline 提炼 · NUCLEUS 家族 · Owner: CDO（辛如音）*
+*v2.0 · 基于 catalog-L2-spec v3.7-baseline 提炼 · NUCLEUS 家族 · 理论依据见 `THEORY.md`*

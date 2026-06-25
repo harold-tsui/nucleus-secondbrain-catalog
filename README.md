@@ -10,6 +10,7 @@
 - `framework/` —— 「空货架」**脚手架**：白名单 `.gitignore` 模板、`STRUCTURE.md` 生成脚本、
   L2 `_guide.md` 批量补全脚本、子域指南模板。供任何人 fork 自建货架。见 `framework/README.md`。
 - `NAMING-POLICY.md` —— **双品牌命名策略**（`nucleus-*` 方法论 ↔ `<人名>-*` 私有实践），家族元规则。
+- `THEORY.md` —— **理论依据**：心智模型、P1–P10 原则、R1–R5 结构规则、O1–O6 操作纪律、四实体模型。skill 与框架均由此推导。
 
 ## 家族关系
 
@@ -21,6 +22,22 @@
 
 规则（catalog）/ 模板（framework）/ 实例（vault）构成完整家族。命名遵循
 [`NAMING-POLICY.md`](NAMING-POLICY.md)：`nucleus-*` 公开方法论 ↔ `harold-*` 私有落地实践。
+
+## 反哺机制（实践 → 方法论）
+
+方法论与实践是**双向**的：
+
+```
+nucleus-secondbrain-catalog  ──(指导)──▶  harold-secondbrain-vault
+        ▲                                          │
+        └──────────(回灌：去个人化后反哺)────────────┘
+```
+
+- **正向**：私有实例依据本仓的 `THEORY.md` + `SKILL.md` + `framework/` 实现货架。
+- **反哺**：在私有实例（`harold-*`）维护中沉淀出的**通用改进**（新规则、新脚本、踩坑修正），
+  **去个人化后回灌**到本仓，升级公共方法论。回灌须剔除一切 PII / 内部路径 / 凭据。
+- **权威序**：内部规格（CDO · T05）为持续演进的权威源；本仓提炼自规格；私有实例依据本仓落地。
+  三者不一致时，规格 > 本仓 > 实例。
 
 ## 权威来源
 
