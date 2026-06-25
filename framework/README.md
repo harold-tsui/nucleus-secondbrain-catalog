@@ -54,5 +54,5 @@ git commit -m "chore: 初始化货架仓库"
 | 仓 | 职责 |
 |---|---|
 | `nucleus-secondbrain-catalog`（本仓） | 货架**规则 skill** + 本**框架脚手架** |
-| `nucleus-secondbrain-vault` | 某人的**私有实例**（含真实内容元数据，不公开） |
+| `harold-secondbrain-vault` | 某人的**私有实例**（含真实内容元数据，不公开） |
 | `nucleus-governance` | PDCA 治理框架（tool-neutral） |
