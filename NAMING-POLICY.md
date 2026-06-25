@@ -1,45 +1,24 @@
-# NUCLEUS 仓库双品牌命名策略
+# 命名策略（指针）
 
-> NUCLEUS 家族元规则 · 方法论与落地实践的分离
+> ⚠️ **本文已升级并迁移。** 跨家族的权威命名标准现位于 NUCLEUS 治理层：
+> `nucleus-governance-spec / 仓库家族治理规范`（active）。本文仅保留 secondbrain 相关切片。
 
-## 核心原则
+## 权威标准
 
-仓库**按"性质/层级"分两个品牌命名空间**，而非按归属：
+仓库命名遵循 **三轴模型** `<家族>-<主题>-<制品>`：
 
-| 品牌 | 含义 | 可见性 | 内容 | 类比 |
-|------|------|--------|------|------|
-| **`nucleus-*`** | 方法论 / 框架 / 规则（tool-neutral、去个人化、可移植） | ✅ 可 public | **不含 PII** | 理论 / SDK / 规格 |
-| **`harold-*`** | 落地实践 / 个人实例（真实数据、具体配置） | 🔒 必须 private | 可含 PII | 生产部署 / 实例 |
+- **家族**：`nucleus`（通用底层）/ `openclaw`（平台）/ `launch`（龙创车研）/ `yeyu`（叶雨）/ `harold`（个人）
+- **层级**：方法论（`-catalog/-framework/-spec/-governance/-template/-method`） vs 实践（`-vault/-instance/-<项目>`）
+- **可见性**：由内容裁定（PII / 商业 IP / 凭据 → private），**不由家族决定**
 
-> `harold-` 不是冗余的归属标记，而是"私有实践家族"命名空间——与 `nucleus-`（公开方法论家族）对立成对。
-> 多人协作时，每个实践者用自己的人名 token 开一个实践家族（`alice-*`、`bob-*`）。
+完整定义（继承关系、可见性矩阵、反哺机制、落位现状）见权威规范。
 
-## 命名模式
+## 本家族（secondbrain 主题）的落位
 
-```
-方法论：  nucleus-<主题>-<制品>     制品 ∈ {catalog, framework, spec, governance, tools-<x>}
-实践：    <人名>-<主题>-<限定>      限定 ∈ {vault, instance, <设备名>}
-```
+| 仓 | 家族·层级 | 可见性 |
+|---|---|---|
+| `nucleus-secondbrain-catalog`（本仓） | nucleus · 方法论（规则 + 框架） | public |
+| `harold-secondbrain-vault` | harold · 实践（个人实例） | private |
 
-**配对技巧：方法论与其落地实践共享 `<主题>` 中段**，一眼可见同主题的两层：
-
-```
-方法论(public)                  落地实践(private)
-nucleus-secondbrain-catalog  ↔  harold-secondbrain-vault
-nucleus-governance           ↔  harold-governance         （如有私有治理实例）
-nucleus-tools-trendradar     ↔  harold-tools-<x>
-```
-
-## 铁律
-
-1. **`harold-*`（及任何 `<人名>-*`）永远私有**——含 PII（家庭/健康/财务等域），禁止进入 public git。
-2. **只有 `nucleus-*` 可转 public**，且转前必须确认无内部路径、凭据、隐私引用。
-3. 方法论沉淀到 `nucleus-*`，实践数据留在 `<人名>-*`；同一能力的两层互相引用、不混仓。
-
-## 当前家族实例
-
-| 仓 | 品牌 | 角色 | 可见性 |
-|---|---|---|---|
-| `nucleus-secondbrain-catalog` | nucleus | 货架规则 skill + `framework/` 脚手架 | 可公开 |
-| `nucleus-governance` | nucleus | PDCA 治理框架 | 可公开 |
-| `harold-secondbrain-vault` | harold | SecondBrain 个人实例（货架骨架元数据） | 私有 |
+> 旧"双品牌策略"（nucleus=方法论 / harold=实践）已被三轴模型取代——可见性不再绑定家族，
+> 且每个家族都可同时拥有方法论层与实践层。
