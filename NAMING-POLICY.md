@@ -7,7 +7,8 @@
 
 仓库命名遵循 **三轴模型** `<家族>-<主题>-<制品>`：
 
-- **家族**：`nucleus`（通用底层）/ `openclaw`（平台）/ `launch`（龙创车研）/ `yeyu`（叶雨）/ `harold`（个人）
+- **家族**（四个）：`nucleus`（通用底层）/ `launch`（龙创车研）/ `yeyu`（叶雨）/ `harold`（个人）
+  - 注：`openclaw` 不是家族，是 harold 之下 CXO 人格的**运行时载体**（`harold→agent→cdo→openclaw`）
 - **层级**：方法论（`-catalog/-framework/-spec/-governance/-template/-method`） vs 实践（`-vault/-instance/-<项目>`）
 - **可见性**：由内容裁定（PII / 商业 IP / 凭据 → private），**不由家族决定**
 
