@@ -115,6 +115,6 @@
 
 ## 出处（Provenance）
 
-本理论提炼自 SecondBrain 数据治理（CDO · T05-Data-Governance）的内部规格族：
+本理论提炼自 SecondBrain 数据治理（CDO 辛如音 · T05-Data-Governance）的内部规格族：
 `超级第二大脑-需求规格` → `第二大脑存储规范-design`（P1–P10）→ `catalog-L2-spec`（全域 L1–L4 · v3.x-baseline）→ `catalog-rules-spec`（R/O 规则）。
 内部规格为**权威源**（持续演进）；本文若与最新规格不一致，以规格为准并回灌同步。
