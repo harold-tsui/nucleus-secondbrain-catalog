@@ -20,4 +20,5 @@ See `../BLUEPRINT.md` for the rationale and placement rules.
 
 | Date | Maintainer | Change |
 |---|---|---|
+| 20260704 | claude | Merged `C0-archive/06-old-projects` into `02-projects` (P7 unique ownership); removed function-layer dirs under `B0-knowledge/04-standards` (overlay is package-internal per R2) |
 | 20260630 | codex | Added concrete public blueprint directory tree as the repo's primary deliverable |

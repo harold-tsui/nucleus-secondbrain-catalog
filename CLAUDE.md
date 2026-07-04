@@ -8,14 +8,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **`blueprint/`** — the concrete, git-trackable empty-shelf directory tree. This is the repo's primary deliverable.
 - **`BLUEPRINT.md`** — public, de-personalized rationale for the L1-L3 directory blueprint.
-- **`SKILL.md`** — the `secondbrain-catalog` skill (v2.1). Packages the shelf-storage rules (R1–R5, 7 rules, placement decision flow) as an installable agent skill. This is what agents consume.
-- **`framework/`** — scaffolding scripts for bootstrapping a new SecondBrain vault from scratch (`framework/bin/refresh-structure.sh`, `framework/bin/scaffold-guides.sh`, templates).
+- **`SKILL.md`** — the `secondbrain-catalog` skill (v2.2). Packages the shelf-storage rules (R1–R5, 7 rules, placement decision flow) as an installable agent skill. This is what agents consume.
+- **`framework/`** — scaffolding scripts for bootstrapping a new SecondBrain vault from scratch (`framework/bin/init-vault.sh` one-shot bootstrap, `framework/bin/validate-structure.sh` structure linter, `framework/bin/refresh-structure.sh`, `framework/bin/scaffold-guides.sh`, templates). Scripts must stay compatible with macOS stock bash 3.2.
 
 Supporting docs: `THEORY.md` (principles P1–P10, R1–R5, O1–O6), `NAMING-POLICY.md` (pointer to the authoritative `nucleus-governance-spec` naming standard), `README.md` (family relationships + feedback loop).
 
 ## Authority Chain
 
-The canonical source spec is **catalog-L2-spec v3.7-baseline**, located in a private governance workspace.
+The canonical source spec is **catalog-L2-spec v3.8-baseline** (plus **catalog-rules-spec v1.0** for R/O rules), located in a private governance workspace.
 
 Authority order: **spec > this repo (public method + blueprint) > downstream private vaults**. If `SKILL.md` or `BLUEPRINT.md` conflicts with the spec, the spec wins — fix this repo and note it.
 

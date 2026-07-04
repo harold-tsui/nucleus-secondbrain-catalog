@@ -9,8 +9,10 @@
 - `SKILL.md` —— 去个人化的 skill 本体（货架**规则**）。
 - `BLUEPRINT.md` —— 去个人化的 **L1-L3 目录蓝图**：从真实实例反推，但剔除 PII / 商业细节 / 凭据路径。
 - `blueprint/` —— 可直接复制的 **实体空货架目录树**。这是本仓最主要的交付物。
-- `framework/` —— 「空货架」**脚手架**：白名单 `.gitignore` 模板、`STRUCTURE.md` 生成脚本、
-  L2 `_guide.md` 批量补全脚本、子域指南模板。供任何人 fork 自建货架。见 `framework/README.md`。
+- `framework/` —— 「空货架」**脚手架**：一键初始化脚本（`init-vault.sh`）、**结构校验器**
+  （`validate-structure.sh`，O1 建前校验闸的可执行形态）、白名单 `.gitignore` 模板、
+  `STRUCTURE.md` 生成脚本、L2 `_guide.md` 批量补全脚本、命名规范与子域指南模板。
+  供任何人 fork 自建货架。见 `framework/README.md`。
 - `NAMING-POLICY.md` —— public 方法论仓的命名指针；私有 owner / 业务线 / 项目名不进入本仓。
 - `THEORY.md` —— **理论依据**：心智模型、P1–P10 原则、R1–R5 结构规则、O1–O6 操作纪律、四实体模型。skill 与框架均由此推导。
 
@@ -52,6 +54,8 @@ nucleus-secondbrain-catalog  ──(指导)──▶  {private-owner}-secondbrai
 
 | 日期 | 维护人 | 变更 |
 |---|---|---|
+| 20260704 | claude | 自洽性评审修复：R1 例外封闭清单（年份/下划线/A0·D0 语义 L2）写入 THEORY+SKILL；SKILL 七条规则对齐规格权威文本（v2.2，based_on 升 v3.8）；C0 归档去重（06→02）；B0 功能层收回包裹内部；修 SKILL 自违规示例路径 |
+| 20260704 | claude | framework 强化：新增 `validate-structure.sh`（O1 可执行化）与 `init-vault.sh`（一键建库）+ `naming.template.md`（修死链）；`.gitignore` 白名单补 `.gitkeep`；修 bash 3.2 空数组致两脚本必挂的 bug；修 scaffold 命名式样漂移与计数器 |
 | 20260630 | codex | Review public 文件并移除 private owner / 业务线 / 内部路径等实例信息；脚本实例排除路径改为环境变量配置 |
 | 20260630 | codex | 新增 `blueprint/` 实体空货架目录树，作为本仓主要交付物 |
 | 20260630 | codex | 新增 `BLUEPRINT.md`，把私有 SecondBrain 实例去个人化抽象为 public L1-L3 目录蓝图 |

@@ -260,6 +260,7 @@ A0-agents/
 - `workspaces` 是每个 agent/persona 的工作台，常可作为独立 git 仓。
 - `runtime` 是会话、输出、快照等运行产物。
 - Agent 人格、工具后端、项目包裹三者不要混放。
+- 本域 L2 是 **R1 语义名例外**（封闭清单）：运行时按绝对路径锚定这三个目录，不编号、不重命名。
 
 ### B0-knowledge · 跨域知识
 
@@ -269,10 +270,7 @@ B0-knowledge/
   02-technology/
   03-personal-development/
   04-standards/
-    1_raw/
-    2_work/
-    3_wiki/
-    4_output/
+    {topic}/
   05-methodology/
     {method-name}/
 ```
@@ -280,6 +278,7 @@ B0-knowledge/
 规则：
 - 被两个以上领域复用的知识才进入 B0。
 - 单域知识留在对应域的包裹或 `3_wiki`。
+- 研究型专题是**包裹**：内部按需分层 `1_raw → 2_work → 3_wiki → 4_output`。功能层属于包裹内部（R2），不预铺在货架层。
 - 方法论采用 Hub-and-Spoke：权威知识放一个 hub，其他域只引用不复制。
 
 ### C0-archive · 冷档案
@@ -288,15 +287,16 @@ B0-knowledge/
 C0-archive/
   01-career/
   02-projects/
+    {原归属}/
   03-family/
   04-backups/
   05-old-versions/
-  06-old-projects/
 ```
 
 规则：
 - 只放退役、完成、旧版本或冷备份。
-- 尽量保留原归属路径信息，方便追溯。
+- 尽量保留原归属路径信息，方便追溯：归档 L2 镜像原 L1 归属。
+- **完成/停止的项目一律进 `02-projects`（P7 唯一归属）**，不另设第二个项目归档抽屉；`04-backups` 收临时备份，`05-old-versions` 收已弃用的旧版本。
 - 不把归档材料当当前事实来源。
 
 ### D0-notes · 笔记软件现场
@@ -314,6 +314,7 @@ D0-notes/
 规则：
 - 这里放软件活数据，不放提炼后的沉淀。
 - 从笔记软件提炼出的 wiki、报告、复盘，回到 `40-self`、`70-career`、`B0-knowledge` 等内容域。
+- 本域 L2 按软件名分层，是 **R1 语义名例外**（封闭清单）：笔记软件按绝对路径注册 vault/笔记本，重命名会断注册。
 
 ## 3. 放置判据
 
@@ -366,5 +367,6 @@ D0-notes/
 
 | 日期 | 维护人 | 变更 |
 |---|---|---|
+| 20260704 | claude | 评审修复：C0 合并 `06-old-projects`→`02-projects`（P7 去重）；B0 功能层收回包裹内部（R2）；A0/D0 语义 L2 补 R1 例外说明 |
 | 20260630 | codex | 将蓝图实体化为 `blueprint/` 目录树，作为 public repo 的主要交付物 |
 | 20260630 | codex | 从真实 SecondBrain 实例抽象 public L1-L3 目录蓝图，新增去个人化放置判据与 public 化边界 |
