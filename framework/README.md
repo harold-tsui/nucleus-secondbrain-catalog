@@ -18,9 +18,12 @@
 
 | 文件 | 用途 |
 |------|------|
+| `bin/init-vault.sh <目标目录>` | **一键初始化**：复制 `../blueprint/` 空货架 + 装 `.gitignore`/脚本/命名规范 + 铺 L2 指南 + 生成快照 + 结构校验。幂等，不覆盖已有 |
+| `bin/validate-structure.sh [根] [深度]` | **结构校验器**（O1 建前校验闸的可执行形态）：校验 R1/R5/垃圾抽屉/O6，违规退出码 1 |
 | `gitignore.template` | 白名单式 `.gitignore`，复制到库根改名为 `.gitignore` |
 | `bin/refresh-structure.sh [层数]` | 生成 `STRUCTURE.md` 目录骨架快照（默认 L3） |
 | `bin/scaffold-guides.sh [--dry]` | 幂等批量补全缺失的 L2 `_guide.md` |
+| `naming.template.md` | 命名规范最小切片，安装为 `00-system/02-governance/naming.md` |
 | `_guide.template.md` | L2 子域指南占位模板 |
 
 脚本默认只排除通用工具目录（如 `.git` / `.obsidian` / `node_modules`）。若你的实例有不应扫描的
@@ -29,7 +32,16 @@
 - `SECOND_BRAIN_STRUCTURE_EXCLUDES`：供 `refresh-structure.sh` 使用
 - `SECOND_BRAIN_SCAFFOLD_EXCLUDES`：供 `scaffold-guides.sh` 使用
 
-## 快速开始（在你自己的知识库根目录）
+## 快速开始
+
+**推荐（一键）**：在 `nucleus-secondbrain-catalog` 检出内运行
+
+```bash
+framework/bin/init-vault.sh ~/MySecondBrain
+# 然后按脚本输出的「下一步」提示 git init 并显式 add 货架文件
+```
+
+**手动（已有目录树时）**：在你自己的知识库根目录
 
 ```bash
 # 1) 装上货架 .gitignore
@@ -42,13 +54,14 @@ mkdir -p bin && cp <本目录>/bin/*.sh bin/ && chmod +x bin/*.sh
 bin/scaffold-guides.sh --dry   # 预览
 bin/scaffold-guides.sh
 
-# 4) 生成目录骨架快照
+# 4) 生成目录骨架快照 + 结构校验
 bin/refresh-structure.sh 3
+bin/validate-structure.sh . 3
 
 # 5) 初始化并提交（只显式 add 货架文件，切勿 git add -A）
 git init
 git add .gitignore STRUCTURE.md README.md bin/*.sh
-find . \( -name _guide.md -o -name _index.md \) -not -path '*/.git/*' -print0 | xargs -0 git add
+find . \( -name _guide.md -o -name _index.md -o -name .gitkeep \) -not -path '*/.git/*' -print0 | xargs -0 git add
 git commit -m "chore: 初始化货架仓库"
 ```
 

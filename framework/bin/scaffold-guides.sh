@@ -15,12 +15,11 @@ FIND_EXCLUDES=(
   -not -path '*/.claude*'
   -not -path '*/node_modules*'
 )
-for pattern in "${EXTRA_EXCLUDES[@]}"; do
+for pattern in ${EXTRA_EXCLUDES[@]+"${EXTRA_EXCLUDES[@]}"}; do
   [ -n "$pattern" ] && FIND_EXCLUDES+=(-not -path "$pattern")
 done
 
-find . -mindepth 2 -maxdepth 2 -type d "${FIND_EXCLUDES[@]}" \
-  2>/dev/null | sort | while read -r d; do
+while read -r d; do
     f="$d/_guide.md"
     [ -f "$f" ] && continue
     name="$(basename "$d")"
@@ -44,11 +43,11 @@ find . -mindepth 2 -maxdepth 2 -type d "${FIND_EXCLUDES[@]}" \
 
 ## 约定（Conventions）
 
-- 命名遵循 \`00-system/02-governance/naming.md\`：\`[日期]_[类型]_[描述]_[状态].ext\`
+- 命名遵循 \`00-system/02-governance/naming.md\`：\`yyyyMMdd_类型_描述-状态.ext\`
 - 新增内容前先读本指南；不确定归属时先进 \`00-system/01-inbox\`
 EOF
     echo "已创建: $f"
     created=$((created+1))
-done
+done < <(find . -mindepth 2 -maxdepth 2 -type d "${FIND_EXCLUDES[@]}" 2>/dev/null | sort)
 
-echo "完成。"
+echo "完成。共创建 ${created} 个 _guide.md。"

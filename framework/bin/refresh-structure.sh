@@ -14,7 +14,7 @@ FIND_EXCLUDES=(
   -not -path '*/.claude*'
   -not -path '*/node_modules*'
 )
-for pattern in "${EXTRA_EXCLUDES[@]}"; do
+for pattern in ${EXTRA_EXCLUDES[@]+"${EXTRA_EXCLUDES[@]}"}; do
   [ -n "$pattern" ] && FIND_EXCLUDES+=(-not -path "$pattern")
 done
 

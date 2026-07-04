@@ -14,6 +14,7 @@
 
 # 2) 白名单：货架元文件（这些文件名只出现在领域骨架处）
 !.gitignore
+!.gitkeep
 !STRUCTURE.md
 !_guide.md
 !_index.md
