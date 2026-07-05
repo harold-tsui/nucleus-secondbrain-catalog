@@ -114,7 +114,7 @@ done < <(find . -mindepth 1 -maxdepth "$DEPTH" -type d "${FIND_EXCLUDES[@]}" 2>/
 # O6：PII 域出现在 git 索引（私有加密仓自担；公共仓必须为零）。
 # 货架元文件（.gitkeep/_guide.md/_index.md）是骨架仓的合法跟踪对象，不算 PII 内容。
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  pii_files="$(git ls-files -- 10-family 30-health 60-finance 2>/dev/null \
+  pii_files="$(git -c core.quotePath=false ls-files -- 10-family 30-health 60-finance 2>/dev/null \
     | grep -v -e '/\.gitkeep$' -e '/_guide\.md$' -e '/_index\.md$' || true)"
   if [ -n "$pii_files" ]; then
     pii_count="$(printf '%s\n' "$pii_files" | wc -l | tr -d ' ')"
