@@ -54,6 +54,9 @@ while IFS= read -r d; do
   # A0/D0 的 L3 及以下 = 包裹/软件现场，跳过
   case "$rel" in A0-agents/*/*|D0-notes/*/*) continue ;; esac
 
+  # 功能层 overlay（R2：永远是包裹内部，不可能是治理层）——含其子树
+  case "$base" in 1_raw|2_work|3_wiki|4_output) pkg_prefixes+=("$rel"); continue ;; esac
+
   # 根级工具目录（框架自带）
   case "$rel" in bin) continue ;; esac
 
