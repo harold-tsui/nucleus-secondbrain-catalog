@@ -30,4 +30,4 @@ done
   echo '```'
 } > "$OUT"
 
-echo "已更新 $OUT（深度 L1–L${DEPTH}，$(grep -c '' "$OUT") 行）"
+echo "已更新 ${OUT}（深度 L1–L${DEPTH}，$(grep -c '' "$OUT") 行）"

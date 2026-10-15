@@ -54,6 +54,7 @@ nucleus-secondbrain-catalog  ──(指导)──▶  {private-owner}-secondbrai
 
 | 日期 | 维护人 | 变更 |
 |---|---|---|
+| 20261014 | trae | framework 回灌 + 缺陷修复。①**新增 `ignore.template`**：白名单 `.gitignore` 会让尊重 ignore 文件的检索工具（ripgrep 谱系：IDE 搜索、`rg` CLI、多数 agent 检索）在库内失明，只能看见骨架文件；`.ignore` 优先级更高，可反放行且不改 git 行为。`init-vault.sh` 成对安装并重编号 1/6–6/6；`framework/README.md` 补文件表、已知副作用与手动步骤。②**修既存缺陷**：`init-vault.sh:20` 与 `refresh-structure.sh:33` 的 `$VAR（` 构造在 macOS 自带 bash 3.2 下会把全角括号首字节吞进变量名，`set -u` 下直接 unbound variable 中止——即"一键初始化"在自带 bash 上从来跑不起来（与 CLAUDE.md「必须兼容 bash 3.2」冲突），改为 `${VAR}（` |
 | 20260704 | claude | 自洽性评审修复：R1 例外封闭清单（年份/下划线/A0·D0 语义 L2）写入 THEORY+SKILL；SKILL 七条规则对齐规格权威文本（v2.2，based_on 升 v3.8）；C0 归档去重（06→02）；B0 功能层收回包裹内部；修 SKILL 自违规示例路径 |
 | 20260704 | claude | framework 强化：新增 `validate-structure.sh`（O1 可执行化）与 `init-vault.sh`（一键建库）+ `naming.template.md`（修死链）；`.gitignore` 白名单补 `.gitkeep`；修 bash 3.2 空数组致两脚本必挂的 bug；修 scaffold 命名式样漂移与计数器 |
 | 20260630 | codex | Review public 文件并移除 private owner / 业务线 / 内部路径等实例信息；脚本实例排除路径改为环境变量配置 |
