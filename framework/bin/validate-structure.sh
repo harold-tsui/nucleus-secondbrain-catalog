@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # validate-structure.sh —— 货架治理层校验器：O1「建前校验闸」的可执行形态。
-# 校验 R1（NN-名 + 封闭例外清单）、R5（记法/ASCII）、垃圾抽屉、O6（PII 域入 git 索引）。
-# 包裹（内嵌 git 仓、A0/D0 之下、_ 开头目录）内部自治，不校验。
+# 校验 R1（NN-名 + 封闭例外清单）、R5（记法/ASCII）、垃圾抽屉、O6（PII 域入 git 索引）；
+# R2 告警：包裹直接占了 L1–L3 位置（应在最深货架之下）。
+# 包裹（内嵌 git 仓、根 .gitmodules 登记的 submodule 槽位——含本机未物化者、A0/D0 之下、
+# _ 开头目录）内部自治，不校验。
 # 用法: bin/validate-structure.sh [根目录，默认 .] [最大治理深度，默认 3]
 # 环境: SECOND_BRAIN_VALIDATE_EXCLUDES 冒号分隔的 find -path 排除模式
 set -uo pipefail
@@ -35,6 +37,33 @@ is_under_pkg() {
   return 1
 }
 
+# 根 .gitmodules 登记的 submodule 槽位 = 包裹。未初始化的槽位在磁盘上只是空目录（无 .git），
+# 只凭 .git 识别会把它误当治理层报 R1/R5，故按登记路径识别。
+slot_paths=()
+if [ -f .gitmodules ] && command -v git >/dev/null 2>&1; then
+  while IFS= read -r -d '' rec; do
+    slot_paths+=("${rec#*$'\n'}")
+  done < <(git config -z -f .gitmodules --get-regexp '^submodule\..*\.path$' 2>/dev/null)
+fi
+is_slot() {
+  local p="$1" s
+  for s in ${slot_paths[@]+"${slot_paths[@]}"}; do
+    [ "$p" = "$s" ] && return 0
+  done
+  return 1
+}
+
+# R2：包裹只能在最深货架之下（L1–L3 强制为货架）。包裹直接位于 L1–L3 位置时告警。
+# A0/D0 的 L3 起即包裹/软件现场（R1 例外③），不在此列。
+check_r2() {
+  local rel="$1" kind="$2" depth
+  case "$rel" in A0-agents/*/*|D0-notes/*/*) return 0 ;; esac
+  depth="$(printf '%s\n' "$rel" | awk -F/ '{print NF}')"
+  if [ "$depth" -le 3 ]; then
+    warn "[R2] 包裹占用 L$depth 货架位（L1–L3 须为货架，包裹应在其下）[$kind]: $rel"
+  fi
+}
+
 while IFS= read -r d; do
   rel="${d#./}"
   base="${rel##*/}"
@@ -45,9 +74,15 @@ while IFS= read -r d; do
   # 包裹子树内部自治
   is_under_pkg "$rel" && continue
 
-  # 内嵌 git 仓 = 包裹（R2）：包裹名不受 R1 约束，子树跳过
+  # 内嵌 git 仓 / 已登记 submodule 槽位 = 包裹（R2）：包裹名不受 R1 约束，子树跳过
   if [ -e "$d/.git" ]; then
     pkg_prefixes+=("$rel")
+    check_r2 "$rel" "git 仓"
+    continue
+  fi
+  if is_slot "$rel"; then
+    pkg_prefixes+=("$rel")
+    check_r2 "$rel" "未物化 submodule 槽位"
     continue
   fi
 

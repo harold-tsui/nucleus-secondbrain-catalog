@@ -19,7 +19,7 @@
 | 文件 | 用途 |
 |------|------|
 | `bin/init-vault.sh <目标目录>` | **一键初始化**：复制 `../blueprint/` 空货架 + 装 `.gitignore`/脚本/命名规范 + 铺 L2 指南 + 生成快照 + 结构校验。幂等，不覆盖已有 |
-| `bin/validate-structure.sh [根] [深度]` | **结构校验器**（O1 建前校验闸的可执行形态）：校验 R1/R5/垃圾抽屉/O6，违规退出码 1 |
+| `bin/validate-structure.sh [根] [深度]` | **结构校验器**（O1 建前校验闸的可执行形态）：校验 R1/R5/垃圾抽屉/O6，违规退出码 1；R2 告警包裹占用 L1–L3 货架位。包裹识别 = 内嵌 `.git` **或**根 `.gitmodules` 登记的 submodule 槽位（本机未初始化的空槽同样按包裹跳过，不误报 R1/R5） |
 | `gitignore.template` | 白名单式 `.gitignore`，复制到库根改名为 `.gitignore` |
 | `ignore.template` | 反白名单式 `.ignore`，复制到库根改名为 `.ignore`。让尊重 ignore 文件的检索工具（ripgrep 谱系）看得见真实内容，**不改变 git 行为** |
 | `bin/refresh-structure.sh [层数]` | 生成 `STRUCTURE.md` 目录骨架快照（默认 L3） |

@@ -54,6 +54,7 @@ nucleus-secondbrain-catalog  ──(指导)──▶  {private-owner}-secondbrai
 
 | 日期 | 维护人 | 变更 |
 |---|---|---|
+| 20261020 | claude | `validate-structure.sh` 包裹识别补 submodule 槽位：原先只凭 `.git` 识别包裹，多节点库中本机未初始化的 submodule 槽位（磁盘上只是空目录）被当成治理层误报 R1/R5；现同时读取根 `.gitmodules` 的 `path`。新增 R2 告警：包裹（含未物化槽位）占用 L1–L3 货架位时提示，A0/D0 的 L3 起按 R1 例外③不报。兼容 bash 3.2，无 `.gitmodules` 时行为不变 |
 | 20261014 | trae | framework 回灌 + 缺陷修复。①**新增 `ignore.template`**：白名单 `.gitignore` 会让尊重 ignore 文件的检索工具（ripgrep 谱系：IDE 搜索、`rg` CLI、多数 agent 检索）在库内失明，只能看见骨架文件；`.ignore` 优先级更高，可反放行且不改 git 行为。`init-vault.sh` 成对安装并重编号 1/6–6/6；`framework/README.md` 补文件表、已知副作用与手动步骤。②**修既存缺陷**：`init-vault.sh:20` 与 `refresh-structure.sh:33` 的 `$VAR（` 构造在 macOS 自带 bash 3.2 下会把全角括号首字节吞进变量名，`set -u` 下直接 unbound variable 中止——即"一键初始化"在自带 bash 上从来跑不起来（与 CLAUDE.md「必须兼容 bash 3.2」冲突），改为 `${VAR}（` |
 | 20260704 | claude | 自洽性评审修复：R1 例外封闭清单（年份/下划线/A0·D0 语义 L2）写入 THEORY+SKILL；SKILL 七条规则对齐规格权威文本（v2.2，based_on 升 v3.8）；C0 归档去重（06→02）；B0 功能层收回包裹内部；修 SKILL 自违规示例路径 |
 | 20260704 | claude | framework 强化：新增 `validate-structure.sh`（O1 可执行化）与 `init-vault.sh`（一键建库）+ `naming.template.md`（修死链）；`.gitignore` 白名单补 `.gitkeep`；修 bash 3.2 空数组致两脚本必挂的 bug；修 scaffold 命名式样漂移与计数器 |
